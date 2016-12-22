@@ -20,7 +20,7 @@ public class BallScript : MonoBehaviour {
 			if (Input.GetMouseButtonDown(0)){ //on mouse click, change the game has started
 				startState = true;
 				Debug.Log ("Left Mouse Clicked, Launch Ball");
-				this.rigidbody2D.velocity = new Vector2 (2f,10f);//give the ball some velocity
+				this.rigidbody2D.velocity = new Vector2 (Random.Range(-3,3),10f);//give the ball some velocity
 			} 
 		}
 
