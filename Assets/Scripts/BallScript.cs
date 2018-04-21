@@ -2,12 +2,14 @@
 using System.Collections;
 
 public class BallScript : MonoBehaviour {
-	public PlayerPaddle paddle;//public method into a variable.
+	private PlayerPaddle paddle;//public method into a variable.
 	private Vector3 paddleToBallVector;
 	private bool startState = false;
 
 	// Use this for initialization
 	void Start () {
+		//set the paddle script to the PlayerPaddle object for prefab purposes.
+		paddle = GameObject.FindObjectOfType<PlayerPaddle>();
 		//calculate paddle to ball offset
 		paddleToBallVector = this.transform.position - paddle.transform.position;
 	}
