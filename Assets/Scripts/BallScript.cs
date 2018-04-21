@@ -27,4 +27,11 @@ public class BallScript : MonoBehaviour {
 		}
 
 	}
+
+	void OnCollisionEnter2D (Collision2D ballCollision){
+		//Play audio if game has started
+		if (startState) {
+			audio.Play ();
+		}
+	}
 }

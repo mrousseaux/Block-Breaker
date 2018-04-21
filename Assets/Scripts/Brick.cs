@@ -4,6 +4,7 @@ using System.Collections;
 public class Brick : MonoBehaviour {
 	public Sprite[] hitSprites;
 	public static int breakableCount = 0;
+	public AudioClip crack;
 
 	private LevelManager levelManager;
 	private int brickHits = 0;
@@ -22,6 +23,7 @@ public class Brick : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D brickCollision){
+		AudioSource.PlayClipAtPoint (crack, transform.position, 0.1f);
 		if (isBreakable){
 			hitHandler();
 		}
