@@ -17,12 +17,10 @@ public class LevelManager : MonoBehaviour {
 		Debug.Log ("Loading Next Level: " + Application.loadedLevel + 1);
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
-
 	public void BrickDestroyed(){
 		if (Brick.breakableCount <= 0) {
 			LoadNextLevel ();
 			Brick.breakableCount = 0;
 		}
 	}
-
 }
