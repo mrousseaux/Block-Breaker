@@ -30,8 +30,11 @@ public class BallScript : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D ballCollision){
 		//Play audio if game has started
+		Vector2 randomTweak = new Vector2 (Random.Range (-0.2f, 0.2f), Random.Range (0f, 0.2f));
 		if (startState) {
 			audio.Play ();
+			rigidbody2D.velocity += randomTweak;
+			print(randomTweak);
 		}
 	}
 }
