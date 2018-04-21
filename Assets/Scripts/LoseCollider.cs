@@ -9,6 +9,7 @@ public class LoseCollider : MonoBehaviour {
 		// sets LevelManager to proper script, sends player to lose screen.
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 		Debug.Log ("Lose Trigger Detected.");
+		Brick.breakableCount = 0;
 		levelManager.LoadLevel ("Lose Screen");
 	}
 	//void OnCollisionEnter2D (Collision2D loseCollider){
