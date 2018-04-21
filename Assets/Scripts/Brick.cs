@@ -2,47 +2,31 @@
 using System.Collections;
 
 public class Brick : MonoBehaviour {
-
 	public Sprite[] hitSprites;
-	public static int breakableCount = 0;
 
 	private LevelManager levelManager;
 	private int brickHits = 0;
-	private bool isBreakable;
-
-	void Start (){
-		isBreakable = (gameObject.tag == "Breakable");
-		//track amount of breakable bricks in a level
-		if (isBreakable){
-			breakableCount++;
-		}
-		Debug.Log ("Number of breakable blocks: " + breakableCount);
-		levelManager = GameObject.FindObjectOfType<LevelManager>();
-		
-	}
+	
 
 	void OnCollisionEnter2D (Collision2D brickCollision){
-		if (isBreakable){
-			hitHandler();
-		}
-	}
-
-	void hitHandler(){
-		int maxHits = hitSprites.Length + 1;
-		brickHits++;
-		//Debug.Log ("Brick: " + GetInstanceID() + " /Hits:" + brickHits);
-		
-		SpriteRenderer brickColor = gameObject.GetComponent (typeof(SpriteRenderer)) as SpriteRenderer;//Get the renderer via GetComponent
-		brickColor.color = new Color (brickColor.color.r, brickColor.color.g, brickColor.color.b, 0.5f); // Set to half it's alpha
-		
-		if (brickHits >= maxHits) {
-			breakableCount--;
-			Destroy (gameObject);
-			levelManager.BrickDestroyed();
-			Debug.Log ("Brick Destroyed. Number of breakable blocks remaing: " + breakableCount);
+		if (gameObject.tag == "Unbreakable") {
 		} else {
-			LoadSprites ();
+			int maxHits = hitSprites.Length + 1;
+			brickHits++;
+			//Debug.Log ("Brick: " + GetInstanceID() + " /Hits:" + brickHits);
+
+			SpriteRenderer brickColor = gameObject.GetComponent (typeof(SpriteRenderer)) as SpriteRenderer;//Get the renderer via GetComponent
+			brickColor.color = new Color (brickColor.color.r, brickColor.color.g, brickColor.color.b, 0.5f); // Set to half it's alpha
+
+			if (brickHits >= maxHits) {
+				Destroy (gameObject);
+				Debug.Log ("Brick Destroyed");
+				//SimulateWin ();
+			} else {
+				LoadSprites ();
+			}
 		}
+
 	}
 
 	void LoadSprites(){
@@ -54,6 +38,11 @@ public class Brick : MonoBehaviour {
 		}
 	}
 
-	
+
+	// TODO Remove this method with real win conditions
+	void SimulateWin(){
+		levelManager = GameObject.FindObjectOfType<LevelManager>();
+		levelManager.LoadNextLevel();
+	}
 
 }
