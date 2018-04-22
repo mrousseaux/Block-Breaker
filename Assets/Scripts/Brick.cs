@@ -34,8 +34,8 @@ public class Brick : MonoBehaviour {
 		brickHits++;
 		//Debug.Log ("Brick: " + GetInstanceID() + " /Hits:" + brickHits);
 		
-		SpriteRenderer brickColor = gameObject.GetComponent (typeof(SpriteRenderer)) as SpriteRenderer;//Get the renderer via GetComponent
-		brickColor.color = new Color (brickColor.color.r, brickColor.color.g, brickColor.color.b, 0.5f); // Set to half it's alpha
+		//SpriteRenderer brickColor = gameObject.GetComponent (typeof(SpriteRenderer)) as SpriteRenderer;//Get the renderer via GetComponent
+		//brickColor.color = new Color (brickColor.color.r, brickColor.color.g, brickColor.color.b, 0.5f); // Set to half it's alpha
 		
 		if (brickHits >= maxHits) {
 			breakableCount--;
